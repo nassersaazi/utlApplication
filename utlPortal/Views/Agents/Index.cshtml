@@ -1,0 +1,67 @@
+﻿@model IEnumerable<utlAPI.Models.FloatRequests>
+
+@{
+    ViewBag.Title = "UTL Portal";
+}
+
+<h2>Agents Requesting Float</h2>
+
+<div class="form-group">
+
+
+    <label for="agent"><b>Please enter the ID of the agent you would like to credit</b></label>
+    <input type="text" class="form-control" placeholder="Enter Agent ID" name="agent" required>
+    <button type="button" class="btn btn-link">@Html.ActionLink("Validate Client", "Details")</button>
+
+
+</div>
+<hr/>
+    <table class="table">
+        <tr>
+            
+            <th>
+                @Html.DisplayNameFor(model => model.AgentId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateSent)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateCredited)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FloatAmount)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                
+                <td>
+                    @Html.DisplayFor(modelItem => item.AgentId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateSent)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateCredited)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FloatAmount)
+                </td>
+                <!--<td>
+                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                </td> -->
+            </tr>
+            }
+
+        </table>

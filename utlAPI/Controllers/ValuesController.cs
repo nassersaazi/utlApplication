@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -33,6 +36,7 @@ namespace utlAPI.Controllers
             }
         }
 
+
         [HttpPost]
         [Route("api/AddAdmin")]
         public IHttpActionResult AddAdmin([FromBody]Admins adm)
@@ -63,8 +67,50 @@ namespace utlAPI.Controllers
                 {
                     return BadRequest(ModelState);
                 }
-                dblayer.RequestFloat(fr);
+                //dblayer.RequestFloat(fr);
+                dblayer.RequestFloatsToQueue(fr);
                 return Ok("Success");
+            }
+            catch (Exception)
+            {
+
+                return Ok("Something went wrong"); ;
+            }
+        }
+
+
+        [HttpGet]
+        [Route("api/GetPendingFloatRequests")]
+        public IHttpActionResult Get()
+        {
+            try
+            {
+                if (!ModelState.IsValid)
+                {
+                    return BadRequest(ModelState);
+                }
+                var fr = dblayer.GetFloatRequests();
+                return Ok(fr);
+            }
+            catch (Exception)
+            {
+
+                return Ok("Something went wrong"); ;
+            }
+        }
+
+        [HttpGet]
+        [Route("api/GetAgentDetails")]
+        public IHttpActionResult GetAgentDetails(int id)
+        {
+            try
+            {
+                if (!ModelState.IsValid)
+                {
+                    return BadRequest(ModelState);
+                }
+                var fr = dblayer.GetAgentDetails(id);
+                return Ok(fr);
             }
             catch (Exception)
             {
