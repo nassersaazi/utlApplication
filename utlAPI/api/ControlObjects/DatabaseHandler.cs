@@ -15,6 +15,13 @@ namespace api.ControlObjects
         private DataTable dt = new DataTable();
         private DbCommand cmd;
         private string connectionString = "conn";
+        public class AgentFloatRequest
+        {
+            public int AgentId;
+            public DateTime Sent;
+            public int Status;
+            public decimal Amount;
+        };
 
         public DatabaseHandler()
         {

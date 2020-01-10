@@ -11,24 +11,24 @@ namespace api.ControlObjects
     {
         public string StoreFloatRequestsToQueue(decimal FloatAmount, int AgentId)
         {
-            Credits credit = new Credits();
-
-            credit.AgentId = AgentId;
-            credit.DateCredited = DateTime.Now;
-            credit.FloatAmount = FloatAmount;
+            AgentFloatRequest agentRequest = new AgentFloatRequest();
+            agentRequest.AgentId = AgentId;
+            agentRequest.Sent = DateTime.Now;
+            agentRequest.Status = 0;
+            agentRequest.Amount = FloatAmount;
 
             try
             {
                 MessageQueue msQueue;
-                if (!MessageQueue.Exists(".\\private$\\utlcredits"))
+                if (!MessageQueue.Exists(".\\private$\\utlagent"))
                 {
-                    msQueue = MessageQueue.Create(".\\private$\\utlcredits");
-                    msQueue.Send(credit);
+                    msQueue = MessageQueue.Create(".\\private$\\utlagent");
+                    msQueue.Send(agentRequest);
                 }
                 else
                 {
-                    msQueue = new MessageQueue(".\\private$\\utlcredits");
-                    msQueue.Send(credit);
+                    msQueue = new MessageQueue(".\\private$\\utlagent");
+                    msQueue.Send(agentRequest);
                 }
                 return "Success!!";
             }
