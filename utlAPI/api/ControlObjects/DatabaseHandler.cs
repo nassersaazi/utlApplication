@@ -101,6 +101,24 @@ namespace api.ControlObjects
 
         }
 
+        internal DataTable GetPendingRequests()
+        {
+            DataTable table = new DataTable();
+
+            try
+            {
+                cmd = utlDB.GetStoredProcCommand("spGetAgentsToCredit");
+
+                table = utlDB.ExecuteDataSet(cmd).Tables[0];
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return table;
+        }
+
         public DataTable GetCreditHistoryTable()
         {
             

@@ -75,6 +75,12 @@ namespace api
         }
 
         [WebMethod]
+        public DataTable GetFloatRequests()
+        {
+            return dh.GetPendingRequests();
+        }
+
+        [WebMethod]
         public DataTable GetCredits()
         {
             return dh.GetCreditHistoryTable();

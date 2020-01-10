@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.960
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FloatRequestsTester", "FloatRequestsTester\FloatRequestsTester.csproj", "{88B16CE2-C9FC-41B4-915A-C60B989BB5E3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FloatRequestsService", "FloatRequestsService\FloatRequestsService.csproj", "{24CD2559-0850-455A-8C8F-3D76DE347E8E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{88B16CE2-C9FC-41B4-915A-C60B989BB5E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{88B16CE2-C9FC-41B4-915A-C60B989BB5E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{88B16CE2-C9FC-41B4-915A-C60B989BB5E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{88B16CE2-C9FC-41B4-915A-C60B989BB5E3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{24CD2559-0850-455A-8C8F-3D76DE347E8E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{24CD2559-0850-455A-8C8F-3D76DE347E8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{24CD2559-0850-455A-8C8F-3D76DE347E8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{24CD2559-0850-455A-8C8F-3D76DE347E8E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E3D1A70A-A4FC-460A-AA06-A87916BE4696}
+	EndGlobalSection
+EndGlobal
