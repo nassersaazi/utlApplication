@@ -13,7 +13,7 @@ namespace FloatRequestsTester.ControlOjects
     public class DatabaseHandler
     {
         private Database utlDB;
-        private DataTable dt = new DataTable();
+        
         private DbCommand cmd;
         private string connectionString = "conn";
        
@@ -25,15 +25,6 @@ namespace FloatRequestsTester.ControlOjects
 
         public  string InsertRequestToDb(EntityObjects.AgentFloatRequest fr)
         {
-            //    SqlCommand cmd = new SqlCommand("spFloatRequests", conn);
-            //    cmd.CommandType = CommandType.StoredProcedure;
-
-            //    cmd.Parameters.AddWithValue("@AgentId", fr.AgentId);
-            //    cmd.Parameters.AddWithValue("@DateSent", fr.Sent);
-            //    cmd.Parameters.AddWithValue("@Status", fr.Status);
-            //    cmd.Parameters.AddWithValue("@FloatAmount", fr.Amount);
-
-            //    int i = cmd.ExecuteNonQuery();
             try
             {
                 cmd = utlDB.GetStoredProcCommand("spFloatRequests", fr.AgentId, fr.Sent,fr.Status, fr.Amount);
