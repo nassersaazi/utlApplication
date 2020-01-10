@@ -6,9 +6,10 @@ using System.Web;
 using utlAPI.Models;
 
 namespace api.ControlObjects
-{
+{   
     public class QueueInsertion
     {
+        
         public string StoreFloatRequestsToQueue(decimal FloatAmount, int AgentId)
         {
             AgentFloatRequest agentRequest = new AgentFloatRequest();
@@ -39,9 +40,37 @@ namespace api.ControlObjects
             }
         }
 
-        internal string StoreFloatCreditsToQueue(decimal floatAmount, int agentId)
+        public string StoreFloatCreditsToQueue(decimal floatAmount, int agentId)
         {
-            throw new NotImplementedException();
+            try
+            {
+                Credits credit = new Credits();
+                credit.AgentId = agentId;
+                credit.DateCredited = DateTime.Now;
+
+                credit.FloatAmount = floatAmount;
+
+                MessageQueue msQueue;
+                if (!MessageQueue.Exists(".\\private$\\utlcredits"))
+                {
+                    msQueue = MessageQueue.Create(".\\private$\\utlcredits");
+                    msQueue.Send(credit);
+                }
+                else
+                {
+                    msQueue = new MessageQueue(".\\private$\\utlcredits");
+                    msQueue.Send(credit);
+                }
+                return "Successfully placed in queue";
+            }
+            catch (Exception ex)
+            {
+
+                return ex.Message;
+            }
         }
+
+       
+        
     }
 }

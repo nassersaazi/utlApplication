@@ -74,32 +74,11 @@ namespace api
             return dh.GetAgentDetails(id);
         }
 
-
-        //[WebMethod]
-        //public DataTable GetCredits()
-        //{
-        //    List<FloatRequests> fr = new List<FloatRequests>();
-        //    conn.Open(); //open connection
-
-        //    SqlCommand cmd = new SqlCommand("[spGetCredits]", conn);
-        //    cmd.CommandType = CommandType.StoredProcedure;
-
-        //    SqlDataReader fetch = cmd.ExecuteReader();
-
-        //    while (fetch.Read())
-        //    {
-        //        fr.Add(new FloatRequests(
-        //            Convert.ToInt32(fetch["RequestId"]),
-        //            Convert.ToDateTime(fetch["DateSent"]),
-        //            Convert.ToInt32(fetch["Status"]),
-        //            Convert.ToDecimal(fetch["FloatAmount"]),
-        //            Convert.ToInt32(fetch["AgentId"])
-        //            ));
-
-        //    }
-
-        //    return fr;
-        //}
+        [WebMethod]
+        public DataTable GetCredits()
+        {
+            return dh.GetCreditHistoryTable();
+        }
 
     }
 }

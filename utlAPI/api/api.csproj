@@ -90,9 +90,13 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="utlAPI.asmx" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ControlObjects\Account.cs" />
+    <Compile Include="ControlObjects\Calculator.cs" />
     <Compile Include="ControlObjects\DatabaseHandler.cs" />
     <Compile Include="ControlObjects\QueueInsertion.cs" />
     <Compile Include="Models\Admins.cs" />

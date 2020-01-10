@@ -101,6 +101,26 @@ namespace api.ControlObjects
 
         }
 
+        public DataTable GetCreditHistoryTable()
+        {
+            
+                DataTable table = new DataTable();
+                
+                try
+                {
+                    cmd = utlDB.GetStoredProcCommand("spGetCredits");
+                    
+                    table = utlDB.ExecuteDataSet(cmd).Tables[0];
+
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+                return table;
+            
+        }
+
         public string AddAdminToDb(string name, string password)
         {
             try
