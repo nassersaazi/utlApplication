@@ -17,19 +17,38 @@ namespace api.ControlObjects
             agentRequest.Sent = DateTime.Now;
             agentRequest.Status = 0;
             agentRequest.Amount = FloatAmount;
+            string queueName = "utlagent";
 
+            return insertInQueue(agentRequest, queueName);
+        }
+
+        public string StoreFloatCreditsToQueue(decimal floatAmount, int agentId)
+        {
+
+            Credits credit = new Credits();
+            credit.AgentId = agentId;
+            credit.DateCredited = DateTime.Now;
+
+            credit.FloatAmount = floatAmount;
+            string queueName = "utlcredits";
+
+            return insertInQueue(credit, queueName);
+        }
+
+        private string insertInQueue(Object ag,string queueName)
+        {
             try
             {
                 MessageQueue msQueue;
-                if (!MessageQueue.Exists(".\\private$\\utlagent"))
+                if (!MessageQueue.Exists(".\\private$\\" + queueName))
                 {
-                    msQueue = MessageQueue.Create(".\\private$\\utlagent");
-                    msQueue.Send(agentRequest);
+                    msQueue = MessageQueue.Create(".\\private$\\" + queueName);
+                    msQueue.Send(ag);
                 }
                 else
                 {
-                    msQueue = new MessageQueue(".\\private$\\utlagent");
-                    msQueue.Send(agentRequest);
+                    msQueue = new MessageQueue(".\\private$\\" + queueName);
+                    msQueue.Send(ag);
                 }
                 return "Success!!";
             }
@@ -40,35 +59,7 @@ namespace api.ControlObjects
             }
         }
 
-        public string StoreFloatCreditsToQueue(decimal floatAmount, int agentId)
-        {
-            try
-            {
-                Credits credit = new Credits();
-                credit.AgentId = agentId;
-                credit.DateCredited = DateTime.Now;
-
-                credit.FloatAmount = floatAmount;
-
-                MessageQueue msQueue;
-                if (!MessageQueue.Exists(".\\private$\\utlcredits"))
-                {
-                    msQueue = MessageQueue.Create(".\\private$\\utlcredits");
-                    msQueue.Send(credit);
-                }
-                else
-                {
-                    msQueue = new MessageQueue(".\\private$\\utlcredits");
-                    msQueue.Send(credit);
-                }
-                return "Successfully placed in queue";
-            }
-            catch (Exception ex)
-            {
-
-                return ex.Message;
-            }
-        }
+        
 
        
         

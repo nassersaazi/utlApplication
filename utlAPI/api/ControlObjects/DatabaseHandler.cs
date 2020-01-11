@@ -101,13 +101,26 @@ namespace api.ControlObjects
 
         }
 
-        internal DataTable GetPendingRequests()
+        public DataTable GetPendingRequests()
+        {
+            string storedProcedure = "spGetAgentsToCredit";
+            return GetData(storedProcedure);
+        }
+
+        public DataTable GetCreditHistoryTable()
+        {
+            string storedProcedure = "spGetCredits";
+            return GetData(storedProcedure);
+
+        }
+
+        private DataTable GetData(string storedProcedure)
         {
             DataTable table = new DataTable();
 
             try
             {
-                cmd = utlDB.GetStoredProcCommand("spGetAgentsToCredit");
+                cmd = utlDB.GetStoredProcCommand(storedProcedure);
 
                 table = utlDB.ExecuteDataSet(cmd).Tables[0];
 
@@ -119,25 +132,7 @@ namespace api.ControlObjects
             return table;
         }
 
-        public DataTable GetCreditHistoryTable()
-        {
-            
-                DataTable table = new DataTable();
-                
-                try
-                {
-                    cmd = utlDB.GetStoredProcCommand("spGetCredits");
-                    
-                    table = utlDB.ExecuteDataSet(cmd).Tables[0];
-
-                }
-                catch (Exception ex)
-                {
-                    throw ex;
-                }
-                return table;
-            
-        }
+        
 
         public string AddAdminToDb(string name, string password)
         {

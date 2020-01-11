@@ -40,7 +40,7 @@ namespace api
             return queueInsertion.StoreFloatRequestsToQueue(FloatAmount, AgentId);
         }
 
-        [WebMethod(Description = "")]
+        [WebMethod(Description = "Insert agent credits to queue")]
         public string FloatCreditsToQueue(decimal FloatAmount, int AgentId)
         {
             return queueInsertion.StoreFloatCreditsToQueue(FloatAmount, AgentId);
