@@ -64,6 +64,7 @@
     <Compile Include="ControlObjects\AccountTest.cs" />
     <Compile Include="ControlObjects\CalculatorTest.cs" />
     <Compile Include="ControlObjects\DatabaseHandlerTest.cs" />
+    <Compile Include="ControlObjects\QueueInsertionTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

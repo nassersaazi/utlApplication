@@ -12,9 +12,13 @@ namespace api.Tests.ControlObjects
     public class CalculatorTest
     {   [Test]
         public void Sum_returnsSum()
-        {
+        {   //arrange
             var sut = new Calculator();
+
+            //act
             var sum = sut.Sum(3, 1);
+
+            //asert
             Assert.AreEqual(4,sum);
         }
     }
