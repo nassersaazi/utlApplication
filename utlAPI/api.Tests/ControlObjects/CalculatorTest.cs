@@ -10,16 +10,23 @@ namespace api.Tests.ControlObjects
 {
     [TestFixture]
     public class CalculatorTest
-    {   [Test]
-        public void Sum_returnsSum()
+    {
+        [TestCase(1, -2)]
+        [TestCase(0, 3)]
+        [TestCase(int.MaxValue, -5)]
+        [TestCase(int.MaxValue, int.MaxValue)]
+        [TestCase(1000, 1)]
+        public void Sum_returnsSum(int lhs, int rhs)
         {   //arrange
             var sut = new Calculator();
 
             //act
-            var sum = sut.Sum(3, 1);
-
+            var expected = lhs + rhs;
+            
             //asert
-            Assert.AreEqual(4,sum);
+            Assert.AreEqual(sut.Sum(lhs, rhs), expected);
         }
+
+
     }
 }

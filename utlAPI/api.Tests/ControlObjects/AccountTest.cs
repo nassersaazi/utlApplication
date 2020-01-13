@@ -24,6 +24,18 @@ namespace api.Tests.ControlObjects
 
             Assert.AreEqual(250m, destination.Balance);
             Assert.AreEqual(100m, source.Balance);
+
+        }
+
+        [TestCase(100, "Declined")]
+        [TestCase(549, "Declined")]
+        [TestCase(550, "Maybe")]
+        [TestCase(674, "Maybe")]
+        [TestCase(675, "We look forward to doing business with you!")]
+        public void MakeCreditDecision_Always_ReturnsExpectedResult(int creditScore, string expectedResult)
+        {   Account acc = new Account();
+            var result = acc.MakeCreditDecision(creditScore);
+            Assert.That(result, Is.EqualTo(expectedResult));
         }
     }
 }
