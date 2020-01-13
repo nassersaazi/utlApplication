@@ -28,20 +28,13 @@ namespace api.ControlObjects
             utlDB = DatabaseFactory.CreateDatabase(connectionString);
         }
 
-        public string AddAgentToDb(string Name, string PhoneNumber, decimal FloatAmount)
+        public bool AddAgentToDb(string Name, string PhoneNumber, decimal FloatAmount)
         {
             try
             {
                 cmd = utlDB.GetStoredProcCommand("spSaveAgents", Name, PhoneNumber, FloatAmount );
                 int i = utlDB.ExecuteNonQuery(cmd);
-                if (i != 0)
-                {
-                    return "Agent saved.";
-                }
-                else
-                {
-                    return "Fehler!!!";
-                }
+                return i != 0;
 
             }
             catch (Exception ex)
@@ -51,21 +44,15 @@ namespace api.ControlObjects
             }
         }
 
-        public string GetAdmin(string name, string password)
+        public bool GetAdmin(string name, string password)
         {
             try
             {
                 cmd = utlDB.GetStoredProcCommand("spGetAdmin", name, password);
                 dt = utlDB.ExecuteDataSet(cmd).Tables[0];
 
-                if (dt.Rows.Count > 0)
-                {
-                    return "Admin existiert";
-                }
-                else
-                {
-                    return "Fehler!!!!";
-                }
+                return dt.Rows.Count > 0;
+
             }
             catch (Exception ex)
             {
@@ -81,25 +68,18 @@ namespace api.ControlObjects
             {
                 cmd = utlDB.GetStoredProcCommand("spGetAgentDetails",id);
                 DataTable dt = utlDB.ExecuteDataSet(cmd).Tables[0];
-                if (dt.Rows.Count > 0)
-                {
-                    cust.AgentId = Convert.ToInt32(dt.Rows[0]["AgentId"]);
-                    cust.Name = dt.Rows[0]["Name"].ToString();
-                    cust.PhoneNumber = dt.Rows[0]["PhoneNumber"].ToString();
-                    cust.FloatAmount = Convert.ToDecimal(dt.Rows[0]["FloatAmount"]);
-                }
-                else
-                {
-                   cust = null;
-                }
+                return GetRecordDetailsFromDb(dt,cust);
+                
             }
             catch (Exception ex)
             {
                 throw ex;
             }
-            return cust;
+            
 
         }
+
+        
 
         public DataTable GetPendingRequests()
         {
@@ -134,20 +114,13 @@ namespace api.ControlObjects
 
         
 
-        public string AddAdminToDb(string name, string password)
+        public bool AddAdminToDb(string name, string password)
         {
             try
             {
                 cmd = utlDB.GetStoredProcCommand("spSaveAdmins", name, password);
                 int i = utlDB.ExecuteNonQuery(cmd);
-                if (i != 0)
-                {
-                    return "Admin saved.";
-                }
-                else
-                {
-                    return "Fehler!!!";
-                }
+                return i != 0;
 
             }
             catch (Exception ex)
@@ -155,6 +128,22 @@ namespace api.ControlObjects
 
                 throw ex;
             }
+        }
+
+        private Agents GetRecordDetailsFromDb(DataTable dt, Agents cust)
+        {
+            if (dt.Rows.Count > 0)
+            {
+                cust.AgentId = Convert.ToInt32(dt.Rows[0]["AgentId"]);
+                cust.Name = dt.Rows[0]["Name"].ToString();
+                cust.PhoneNumber = dt.Rows[0]["PhoneNumber"].ToString();
+                cust.FloatAmount = Convert.ToDecimal(dt.Rows[0]["FloatAmount"]);
+            }
+            else
+            {
+                cust = null;
+            }
+            return cust;
         }
     }
 }

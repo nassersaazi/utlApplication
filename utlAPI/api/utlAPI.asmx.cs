@@ -47,7 +47,7 @@ namespace api
         }
 
         [WebMethod(Description = "Add new agent")]
-        public string AddAgent(string Name,string PhoneNumber,decimal FloatAmount)
+        public bool AddAgent(string Name,string PhoneNumber,decimal FloatAmount)
         {
            
             return dh.AddAgentToDb(Name, PhoneNumber, FloatAmount);
@@ -56,13 +56,13 @@ namespace api
         }
 
         [WebMethod(Description = "Add new admin")]
-        public string AddAdmin(string Name,string Password)
+        public bool AddAdmin(string Name,string Password)
         {
             return dh.AddAdminToDb(Name, Password);
         }
 
         [WebMethod]
-        public string GetAdmin(string name, string password)
+        public bool GetAdmin(string name, string password)
         {
              
             return dh.GetAdmin(name, password);
