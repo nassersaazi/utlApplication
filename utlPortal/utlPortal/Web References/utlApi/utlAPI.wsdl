@@ -1,0 +1,383 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="RequestFloatsToQueue">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="FloatAmount" type="s:decimal" />
+            <s:element minOccurs="1" maxOccurs="1" name="AgentId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RequestFloatsToQueueResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RequestFloatsToQueueResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FloatCreditsToQueue">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="FloatAmount" type="s:decimal" />
+            <s:element minOccurs="1" maxOccurs="1" name="AgentId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FloatCreditsToQueueResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="FloatCreditsToQueueResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddAgent">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="PhoneNumber" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="FloatAmount" type="s:decimal" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddAgentResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AddAgentResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddAdmin">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddAdminResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AddAdminResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAdmin">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="name" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAdminResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAdminResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAgentDetails">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAgentDetailsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAgentDetailsResult" type="tns:Agents" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Agents">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="AgentId" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PhoneNumber" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="FloatAmount" type="s:decimal" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetFloatRequests">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetFloatRequestsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetFloatRequestsResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCredits">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetCreditsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCreditsResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="RequestFloatsToQueueSoapIn">
+    <wsdl:part name="parameters" element="tns:RequestFloatsToQueue" />
+  </wsdl:message>
+  <wsdl:message name="RequestFloatsToQueueSoapOut">
+    <wsdl:part name="parameters" element="tns:RequestFloatsToQueueResponse" />
+  </wsdl:message>
+  <wsdl:message name="FloatCreditsToQueueSoapIn">
+    <wsdl:part name="parameters" element="tns:FloatCreditsToQueue" />
+  </wsdl:message>
+  <wsdl:message name="FloatCreditsToQueueSoapOut">
+    <wsdl:part name="parameters" element="tns:FloatCreditsToQueueResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddAgentSoapIn">
+    <wsdl:part name="parameters" element="tns:AddAgent" />
+  </wsdl:message>
+  <wsdl:message name="AddAgentSoapOut">
+    <wsdl:part name="parameters" element="tns:AddAgentResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddAdminSoapIn">
+    <wsdl:part name="parameters" element="tns:AddAdmin" />
+  </wsdl:message>
+  <wsdl:message name="AddAdminSoapOut">
+    <wsdl:part name="parameters" element="tns:AddAdminResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAdminSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAdmin" />
+  </wsdl:message>
+  <wsdl:message name="GetAdminSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAdminResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAgentDetailsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAgentDetails" />
+  </wsdl:message>
+  <wsdl:message name="GetAgentDetailsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAgentDetailsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetFloatRequestsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetFloatRequests" />
+  </wsdl:message>
+  <wsdl:message name="GetFloatRequestsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetFloatRequestsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCreditsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCredits" />
+  </wsdl:message>
+  <wsdl:message name="GetCreditsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCreditsResponse" />
+  </wsdl:message>
+  <wsdl:portType name="utlAPISoap">
+    <wsdl:operation name="RequestFloatsToQueue">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Insert float requests to queue</wsdl:documentation>
+      <wsdl:input message="tns:RequestFloatsToQueueSoapIn" />
+      <wsdl:output message="tns:RequestFloatsToQueueSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="FloatCreditsToQueue">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Insert agent credits to queue</wsdl:documentation>
+      <wsdl:input message="tns:FloatCreditsToQueueSoapIn" />
+      <wsdl:output message="tns:FloatCreditsToQueueSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddAgent">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Add new agent</wsdl:documentation>
+      <wsdl:input message="tns:AddAgentSoapIn" />
+      <wsdl:output message="tns:AddAgentSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddAdmin">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Add new admin</wsdl:documentation>
+      <wsdl:input message="tns:AddAdminSoapIn" />
+      <wsdl:output message="tns:AddAdminSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAdmin">
+      <wsdl:input message="tns:GetAdminSoapIn" />
+      <wsdl:output message="tns:GetAdminSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAgentDetails">
+      <wsdl:input message="tns:GetAgentDetailsSoapIn" />
+      <wsdl:output message="tns:GetAgentDetailsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFloatRequests">
+      <wsdl:input message="tns:GetFloatRequestsSoapIn" />
+      <wsdl:output message="tns:GetFloatRequestsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCredits">
+      <wsdl:input message="tns:GetCreditsSoapIn" />
+      <wsdl:output message="tns:GetCreditsSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="utlAPISoap" type="tns:utlAPISoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="RequestFloatsToQueue">
+      <soap:operation soapAction="http://tempuri.org/RequestFloatsToQueue" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FloatCreditsToQueue">
+      <soap:operation soapAction="http://tempuri.org/FloatCreditsToQueue" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddAgent">
+      <soap:operation soapAction="http://tempuri.org/AddAgent" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddAdmin">
+      <soap:operation soapAction="http://tempuri.org/AddAdmin" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAdmin">
+      <soap:operation soapAction="http://tempuri.org/GetAdmin" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAgentDetails">
+      <soap:operation soapAction="http://tempuri.org/GetAgentDetails" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFloatRequests">
+      <soap:operation soapAction="http://tempuri.org/GetFloatRequests" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCredits">
+      <soap:operation soapAction="http://tempuri.org/GetCredits" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="utlAPISoap12" type="tns:utlAPISoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="RequestFloatsToQueue">
+      <soap12:operation soapAction="http://tempuri.org/RequestFloatsToQueue" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FloatCreditsToQueue">
+      <soap12:operation soapAction="http://tempuri.org/FloatCreditsToQueue" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddAgent">
+      <soap12:operation soapAction="http://tempuri.org/AddAgent" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddAdmin">
+      <soap12:operation soapAction="http://tempuri.org/AddAdmin" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAdmin">
+      <soap12:operation soapAction="http://tempuri.org/GetAdmin" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAgentDetails">
+      <soap12:operation soapAction="http://tempuri.org/GetAgentDetails" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFloatRequests">
+      <soap12:operation soapAction="http://tempuri.org/GetFloatRequests" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCredits">
+      <soap12:operation soapAction="http://tempuri.org/GetCredits" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="utlAPI">
+    <wsdl:port name="utlAPISoap" binding="tns:utlAPISoap">
+      <soap:address location="http://localhost:55103/utlAPI.asmx" />
+    </wsdl:port>
+    <wsdl:port name="utlAPISoap12" binding="tns:utlAPISoap12">
+      <soap12:address location="http://localhost:55103/utlAPI.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
