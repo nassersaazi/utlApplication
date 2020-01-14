@@ -11,6 +11,19 @@ namespace api.Tests.ControlObjects
     [TestFixture]
     public class AccountTest
     {
+        public static IEnumerable<TestCaseData> CreditDecisionTestData
+        {
+            get
+            {
+                yield return new TestCaseData(100, "Declined");
+                yield return new TestCaseData(549, "Declined");
+                yield return new TestCaseData(550, "Maybe");
+                yield return new TestCaseData(674, "Maybe");
+                yield return new TestCaseData(675, "Maybe");
+                yield return new TestCaseData(676, "We look forward to doing business with you!");
+            }
+        }
+
         [Test]
         public void TransferFunds()
         {
@@ -27,15 +40,26 @@ namespace api.Tests.ControlObjects
 
         }
 
-        [TestCase(100, "Declined")]
-        [TestCase(549, "Declined")]
-        [TestCase(550, "Maybe")]
-        [TestCase(674, "Maybe")]
-        [TestCase(675, "We look forward to doing business with you!")]
+        //[TestCase(100, "Declined")]
+        //[TestCase(int.MinValue, "Declined")]
+        //[TestCase(-1, "Declined")]
+        //[TestCase(0, "Declined")]
+        //[TestCase(549, "Declined")]
+        //[TestCase(550, "Maybe")]
+        //[TestCase(675, "Maybe")]
+        //[TestCase(676, "We look forward to doing business with you!")]
+        //[TestCase(int.MaxValue, "We look forward to doing business with you!")]
+        [TestCaseSource(typeof(AccountTest), "CreditDecisionTestData")]
         public void MakeCreditDecision_Always_ReturnsExpectedResult(int creditScore, string expectedResult)
-        {   Account acc = new Account();
+        {
+            
+           // Refactored to use TestCaseSource
+            Account acc = new Account();
             var result = acc.MakeCreditDecision(creditScore);
             Assert.That(result, Is.EqualTo(expectedResult));
         }
+
     }
+
+
 }
