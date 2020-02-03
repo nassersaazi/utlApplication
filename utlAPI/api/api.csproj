@@ -98,11 +98,13 @@
     <Compile Include="ControlObjects\Account.cs" />
     <Compile Include="ControlObjects\Calculator.cs" />
     <Compile Include="ControlObjects\DatabaseHandler.cs" />
+    <Compile Include="ControlObjects\IDatabaseHandler.cs" />
+    <Compile Include="ControlObjects\IQueue.cs" />
     <Compile Include="ControlObjects\QueueInsertion.cs" />
-    <Compile Include="Models\Admins.cs" />
-    <Compile Include="Models\Agents.cs" />
-    <Compile Include="Models\Credits.cs" />
-    <Compile Include="Models\FloatRequests.cs" />
+    <Compile Include="EntityObjects\Admins.cs" />
+    <Compile Include="EntityObjects\Agents.cs" />
+    <Compile Include="EntityObjects\Credits.cs" />
+    <Compile Include="EntityObjects\FloatRequests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="utlAPI.asmx.cs">
       <DependentUpon>utlAPI.asmx</DependentUpon>

@@ -9,7 +9,7 @@ using utlAPI.Models;
 
 namespace api.ControlObjects
 {
-    public class DatabaseHandler
+    public class DatabaseHandler : IDatabaseHandler
     {
         private Database utlDB;
         private DataTable dt = new DataTable();
@@ -94,7 +94,7 @@ namespace api.ControlObjects
 
         }
 
-        private DataTable GetData(string storedProcedure)
+        public DataTable GetData(string storedProcedure)
         {
             DataTable table = new DataTable();
 
@@ -130,7 +130,7 @@ namespace api.ControlObjects
             }
         }
 
-        private Agents GetRecordDetailsFromDb(DataTable dt, Agents cust)
+        public Agents GetRecordDetailsFromDb(DataTable dt, Agents cust)
         {
             if (dt.Rows.Count > 0)
             {
